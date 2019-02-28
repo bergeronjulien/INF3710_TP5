@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-
+import {Hotel} from "../../../common/tables/Hotel";
 import { of, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 
@@ -12,21 +12,21 @@ export class IndexService {
 
     public getHotels(): Observable<any[]> {
 
-        return this.http.get<any[]>(this.BASE_URL+ "/hotel").pipe(
-            catchError(this.handleError<any[]>("getHotels")),
+        return this.http.get<Hotel[]>(this.BASE_URL+ "/hotel").pipe(
+            catchError(this.handleError<Hotel[]>("getHotels")),
         );
     }
 
-    public getHotelPKs(): Observable<any[]>{
+    public getHotelPKs(): Observable<string[]>{
 
-        return this.http.get<any[]>(this.BASE_URL+"/hotel/hotelNo").pipe(
-            catchError(this.handleError<any[]>("getHotelPKs")),
+        return this.http.get<string[]>(this.BASE_URL+"/hotel/hotelNo").pipe(
+            catchError(this.handleError<string[]>("getHotelPKs")),
         );
     }
 
-    public insertHotel(hotel: any): Observable<any[]> {
-        return this.http.post<any>(this.BASE_URL+"/hotel/insert", hotel).pipe(
-            catchError(this.handleError<any>("inserHotel")),
+    public insertHotel(hotel: any): Observable<number> {
+        return this.http.post<number>(this.BASE_URL+"/hotel/insert", hotel).pipe(
+            catchError(this.handleError<number>("inserHotel")),
         );
     }
     

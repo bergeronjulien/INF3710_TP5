@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from "@angular/platform-browser";
-
-import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { CubeComponent } from "./cube/cube.component";
 import { RenderService } from "./cube/render.service";
@@ -14,6 +14,7 @@ import { IndexService } from "./index.service";
     CubeComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
