@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { IndexService } from "./index.service";
 import { Hotel } from '../../../common/tables/Hotel';
+import { Room } from '../../../common/tables/Room';
 
 @Component({
   selector: "app-root",
@@ -11,9 +12,10 @@ export class AppComponent implements OnInit {
     public constructor(private basicService: IndexService) { }
 
     public readonly title: string = "INF3710";
-    public hotels: Hotel[];
-    public hotelPKs: string[];
+    public hotels: Hotel[] = [];
+    public hotelPKs: string[] = [];
     public duplicateError: boolean = false;
+    public invalidHotelPK: boolean = false;
     public ngOnInit(): void {
         this.basicService.getHotelPKs().subscribe((hotelPKs:string[])=>{
             this.hotelPKs = hotelPKs;
@@ -40,5 +42,21 @@ export class AppComponent implements OnInit {
             }
             this.duplicateError = (res === -1);
         });
+    }
+
+    public insertRoom( roomNo:string, hotelNo: string, typeRoom: string, price: number): void{
+        let room: Room = {
+            roomno: roomNo,
+            hotelno: hotelNo,
+            typeroom: typeRoom,
+            price: price
+        };
+        this.basicService.insertRoom(room).subscribe((res:number)=> {
+            console.log(res);
+        });
+    }
+
+    public validateHotelNo(hotelNo: string): void{
+        this.invalidHotelPK = this.hotelPKs.indexOf(hotelNo) === -1;
     }
 }

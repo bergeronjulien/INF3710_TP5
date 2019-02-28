@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import {Hotel} from "../../../common/tables/Hotel";
 import { of, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { Room } from '../../../common/tables/Room';
 
 @Injectable()
 export class IndexService {
@@ -26,6 +27,12 @@ export class IndexService {
 
     public insertHotel(hotel: any): Observable<number> {
         return this.http.post<number>(this.BASE_URL+"/hotel/insert", hotel).pipe(
+            catchError(this.handleError<number>("inserHotel")),
+        );
+    }
+
+    public insertRoom(room: Room): Observable<number> {
+        return this.http.post<number>(this.BASE_URL+"/rooms/insert", room).pipe(
             catchError(this.handleError<number>("inserHotel")),
         );
     }

@@ -11,8 +11,25 @@
   </li>
 </div>
 
-<input #hotelNo >
-<input #hotelName >
-<input #hotelCity >
-<button (click)="insertHotel(hotelNo.value,hotelName.value, hotelCity.value)"> Add Hotel</button>
-<div id="error" *ngIf="duplicateError"> Insertion sur une cle primaire qui existe deja</div>
+<div id="hotel">
+<h1> Hotels</h1>
+  <ul style="list-style: none;">
+    hotelNo : <li><input #hotelNo></li>
+    hotelName : <li><input #hotelName></li>
+    hotelCity : <li><input #hotelCity></li>
+  <li><button (click)="insertHotel(hotelNo.value,hotelName.value, hotelCity.value)"> Add Hotel</button></li>
+  </ul>
+  <div id="error" *ngIf="duplicateError"> Insertion sur une cle primaire qui existe deja</div>
+</div>
+
+<div id="room">
+<h1> Rooms</h1>
+  <ul style="list-style: none;">
+    roomNo : <li><input type="text" #roomNo ></li>
+    hotelNo : <li><input type="text" #hotelNo (keyup)="validateHotelNo(hotelNo.value)"></li>
+    typeRoom : <li><input type="text" #typeRoom ></li>
+    price : <li><input type="number" #price ></li>
+    <button (click)="insertRoom(roomNo.value, hotelNo.value, typeRoom.value, price.value)" [disabled]= "hotelNo.value === '' || invalidHotelPK"> Add Room</button>
+  </ul>
+  <div id="error" *ngIf="invalidHotelPK"> Cet hotel n'existe pas</div>
+</div>

@@ -152,7 +152,7 @@
       "statements"
     ],
     "arrow-parens": true,
-    "no-any": true,
+    "no-any": false,
     "no-magic-numbers": true,
     "only-arrow-functions": true,
     "adjacent-overload-signatures": true,
