@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {Hotel} from "../../../common/tables/Hotel";
-import { of, Observable } from "rxjs";
+import { of, Observable,concat } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Room } from '../../../common/tables/Room';
 
@@ -36,8 +36,12 @@ export class IndexService {
             catchError(this.handleError<number>("inserHotel")),
         );
     }
-    
 
+    public setUpDatabase(): Observable<any> {
+        return concat(this.http.post<any>(this.BASE_URL+"/createSchema",[]), 
+                      this.http.post<any>(this.BASE_URL+"/populateDb",[]));
+    }
+    
     private handleError<T>(request: string, result?: T): (error: Error) => Observable<T> {
 
         return (error: Error): Observable<T> => {

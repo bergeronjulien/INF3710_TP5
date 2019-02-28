@@ -4,14 +4,11 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
-import { CubeComponent } from "./cube/cube.component";
-import { RenderService } from "./cube/render.service";
 import { IndexService } from "./index.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CubeComponent,
   ],
   imports: [
     CommonModule,
@@ -19,7 +16,7 @@ import { IndexService } from "./index.service";
     HttpClientModule,
     FormsModule,
   ],
-  providers: [IndexService, RenderService],
+  providers: [IndexService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

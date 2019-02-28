@@ -59,4 +59,10 @@ export class AppComponent implements OnInit {
     public validateHotelNo(hotelNo: string): void{
         this.invalidHotelPK = this.hotelPKs.indexOf(hotelNo) === -1;
     }
+
+    public createDB(): void {
+        this.basicService.setUpDatabase().subscribe((res:any)=>{
+            console.log(res);
+        });
+    }
 }

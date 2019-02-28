@@ -27,7 +27,7 @@ export class DatabaseController {
 
         router.post("/populateDb",
                     (req: Request, res: Response, next: NextFunction) => {
-                    this.databaseService.createSchema().then((result: pg.QueryResult) => {
+                    this.databaseService.populateDb().then((result: pg.QueryResult) => {
                         console.log("CECI EST UNE FONCTION DE TEST SEULEMENT");
                         res.json(result);
                     }).catch((e: Error) => {
