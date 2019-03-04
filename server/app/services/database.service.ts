@@ -49,7 +49,7 @@ export class DatabaseService {
 
     public getHotelNo(): Promise<pg.QueryResult> {
         this.pool.connect();
-        
+
         return this.pool.query('SELECT hotelNo FROM HOTELDB.Hotel;');
     }
 

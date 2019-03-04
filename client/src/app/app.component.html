@@ -1,21 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-  {{ title }}!
+  {{ title }}
   </h1>
+  <img width="512" height="512" src = "https://cdn0.iconfinder.com/data/icons/basic-uses-symbol-vol-2/100/Hotel_Building_Home_Hospital_Civil-512.png">
 <div>
   <button (click) ="createDB()">Create Database</button>
 </div>
 
-</div>
-<div id="ht">
+
+<div id="ht" style="text-align:center">
   <button (click)="getHotels()">Get Hotels</button>
-  <li *ngFor="let hotel of hotels">
-    {{ hotel.hotelname }} : {{ hotel.city}}
-  </li>
+  <table id ="ht" align="center" border="1" width="350">
+    <thead>
+      <th> HOTEL</th>
+      <th> CITY</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hotel of hotels">
+        <td> {{hotel.hotelname}}</td>
+        <td> {{hotel.city}} </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<div id="hotel">
+<div id="hotel" style="text-align: left">
 <h1> Hotels</h1>
   <ul style="list-style: none;">
     hotelNo : <li><input #hotelNo></li>
@@ -26,7 +36,7 @@
   <div id="error" *ngIf="duplicateError"> Insertion sur une cle primaire qui existe deja</div>
 </div>
 
-<div id="room">
+<div id="room" style="text-align: left">
 <h1> Rooms</h1>
   <ul style="list-style: none;">
     roomNo : <li><input type="text" #roomNo ></li>

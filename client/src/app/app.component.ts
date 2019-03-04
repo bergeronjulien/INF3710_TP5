@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { IndexService } from "./index.service";
-import { Hotel } from '../../../common/tables/Hotel';
-import { Room } from '../../../common/tables/Room';
+import { Hotel } from "../../../common/tables/Hotel";
+import { Room } from "../../../common/tables/Room";
+import { CommunicationService } from "./communication.service";
 
 @Component({
   selector: "app-root",
@@ -9,34 +9,34 @@ import { Room } from '../../../common/tables/Room';
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-    public constructor(private basicService: IndexService) { }
+    public constructor(private communicationService: CommunicationService) { }
 
-    public readonly title: string = "INF3710";
+    public readonly title: string = "INF3710 TP5";
     public hotels: Hotel[] = [];
     public hotelPKs: string[] = [];
     public duplicateError: boolean = false;
     public invalidHotelPK: boolean = false;
     public ngOnInit(): void {
-        this.basicService.getHotelPKs().subscribe((hotelPKs:string[])=>{
+        this.communicationService.getHotelPKs().subscribe((hotelPKs: string[]) => {
             this.hotelPKs = hotelPKs;
             console.log(this.duplicateError);
             console.log(this.hotelPKs);
-        })
+        });
     }
 
-    public getHotels(): void{
-        this.basicService.getHotels().subscribe((hotels:Hotel[]) => {
+    public getHotels(): void {
+        this.communicationService.getHotels().subscribe((hotels: Hotel[]) => {
             this.hotels = hotels;
         });
     }
 
-    public insertHotel(hotelNo:string, hotelName:string, hotelCity:string): void{
-        let hotel:any = {
+    public insertHotel(hotelNo: string, hotelName: string, hotelCity: string): void {
+        const hotel: any = {
             "hotelNo" : hotelNo,
             "hotelName" : hotelName,
             "city" : hotelCity
-        }
-        this.basicService.insertHotel(hotel).subscribe((res:number)=> {
+        };
+        this.communicationService.insertHotel(hotel).subscribe((res: number) => {
             if (res > 0) {
                 this.getHotels();
             }
@@ -44,24 +44,24 @@ export class AppComponent implements OnInit {
         });
     }
 
-    public insertRoom( roomNo:string, hotelNo: string, typeRoom: string, price: number): void{
-        let room: Room = {
+    public insertRoom( roomNo: string, hotelNo: string, typeRoom: string, price: number): void {
+        const room: Room = {
             roomno: roomNo,
             hotelno: hotelNo,
             typeroom: typeRoom,
             price: price
         };
-        this.basicService.insertRoom(room).subscribe((res:number)=> {
+        this.communicationService.insertRoom(room).subscribe((res: number) => {
             console.log(res);
         });
     }
 
-    public validateHotelNo(hotelNo: string): void{
+    public validateHotelNo(hotelNo: string): void {
         this.invalidHotelPK = this.hotelPKs.indexOf(hotelNo) === -1;
     }
 
     public createDB(): void {
-        this.basicService.setUpDatabase().subscribe((res:any)=>{
+        this.communicationService.setUpDatabase().subscribe((res: any) => {
             console.log(res);
         });
     }
