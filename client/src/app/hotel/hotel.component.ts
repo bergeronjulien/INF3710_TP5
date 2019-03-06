@@ -43,8 +43,6 @@ export class HotelComponent implements OnInit {
     });
 }
 
-  public validateHotelNo(hotelNo: string): void {
-    this.invalidHotelPK = this.hotelPKs.indexOf(hotelNo) === -1;
-}
+
 
 }

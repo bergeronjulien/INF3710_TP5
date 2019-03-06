@@ -2,6 +2,7 @@ import { Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Hotel } from "../../../common/tables/Hotel";
+import { Room } from "../../../common/tables/Room";
 import { CommunicationService } from "./communication.service";
 
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
               this.route = "";
             }
           });
-     }
+    }
 
     public readonly title: string = "INF3710 TP5";
     public hotels: Hotel[] = [];
@@ -39,6 +40,36 @@ export class AppComponent implements OnInit {
         this.communicationService.getHotels().subscribe((hotels: Hotel[]) => {
             this.hotels = hotels;
         });
+    }
+
+    public insertHotel(hotelNo: string, hotelName: string, hotelCity: string): void {
+        const hotel: any = {
+            "hotelNo" : hotelNo,
+            "hotelName" : hotelName,
+            "city" : hotelCity
+        };
+        this.communicationService.insertHotel(hotel).subscribe((res: number) => {
+            if (res > 0) {
+                this.getHotels();
+            }
+            this.duplicateError = (res === -1);
+        });
+    }
+
+    public insertRoom( roomNo: string, hotelNo: string, typeRoom: string, price: number): void {
+        const room: Room = {
+            roomno: roomNo,
+            hotelno: hotelNo,
+            typeroom: typeRoom,
+            price: price
+        };
+        this.communicationService.insertRoom(room).subscribe((res: number) => {
+            console.log(res);
+        });
+    }
+
+    public validateHotelNo(hotelNo: string): void {
+        this.invalidHotelPK = this.hotelPKs.indexOf(hotelNo) === -1;
     }
 
     public createDB(): void {

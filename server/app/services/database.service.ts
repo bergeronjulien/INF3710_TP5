@@ -21,6 +21,7 @@ export class DatabaseService {
 
     /*
         METHODES DE DEBUG
+        
     */
     public createSchema(): Promise<pg.QueryResult> {
         this.pool.connect();
