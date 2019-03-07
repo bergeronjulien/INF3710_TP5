@@ -20,12 +20,12 @@ export class DatabaseService {
     private pool: pg.Pool = new pg.Pool(this.connectionConfig);
 
     /*
+
         METHODES DE DEBUG
-        
     */
     public createSchema(): Promise<pg.QueryResult> {
         this.pool.connect();
-
+        
         return this.pool.query(schema);
     }
 

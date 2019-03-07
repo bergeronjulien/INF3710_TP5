@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Room } from "../../../../common/tables/Room";
 import { CommunicationService } from "../communication.service";
-import { Hotel } from "../../../../common/tables/Hotel";
-
 
 @Component({
   selector: "app-room",
@@ -12,7 +10,6 @@ import { Hotel } from "../../../../common/tables/Hotel";
 export class RoomComponent implements OnInit {
   public constructor(private communicationService: CommunicationService) { }
 
-  public hotels: Hotel[] = [];
   public hotelPKs: string[] = [];
   public duplicateError: boolean = false;
   public invalidHotelPK: boolean = false;
@@ -26,8 +23,9 @@ export class RoomComponent implements OnInit {
 
   public validateHotelNo(hotelNo: string): void {
     this.invalidHotelPK = this.hotelPKs.indexOf(hotelNo) === -1;
+    console.log("===" + hotelNo + this.invalidHotelPK)
   }
-  
+
   public insertRoom( roomNo: string, hotelNo: string, typeRoom: string, price: number): void {
     const room: Room = {
         roomno: roomNo,
