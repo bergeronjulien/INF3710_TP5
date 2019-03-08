@@ -1,16 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
+
+
+
+<nav class="navbar navbar-dark bg-dark mb-5">
+    <a class="navbar-brand title" href="/">INF3710-TP5</a>
+    <div class="navbar-expand mr-auto">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" routerLink="/hotel">Hotels</a>
+        <a class="nav-item nav-link active" routerLink="/room">Rooms</a>
+      </div>
+    </div>
+  </nav>
+
 <div style="text-align:center">
-  <h1>
-  {{ title }}
-  </h1>
-  <img width="512" height="512" src = "https://cdn0.iconfinder.com/data/icons/basic-uses-symbol-vol-2/100/Hotel_Building_Home_Hospital_Civil-512.png">
-<div>
-  <button (click) ="createDB()">Create Database</button>
+<div *ngIf="route == ''">
+  <button type="button" class="btn btn-danger" (click) ="createDB()">Create Database</button>
 </div>
 
+<router-outlet></router-outlet>
 
-<div id="ht" style="text-align:center">
-  <button (click)="getHotels()">Get Hotels</button>
+
+<div id="ht" style="text-align:center" *ngIf="route != '/room'">
+  <button type="button" class="btn btn-primary" (click)="getHotels()">Get Hotels</button>
   <table id ="ht" align="center" border="1" width="350">
     <thead>
       <th> HOTEL</th>
@@ -25,25 +36,4 @@
   </table>
 </div>
 
-<div id="hotel" style="text-align: left">
-<h1> Hotels</h1>
-  <ul style="list-style: none;">
-    hotelNo : <li><input #hotelNo></li>
-    hotelName : <li><input #hotelName></li>
-    hotelCity : <li><input #hotelCity></li>
-  <li><button (click)="insertHotel(hotelNo.value,hotelName.value, hotelCity.value)"> Add Hotel</button></li>
-  </ul>
-  <div id="error" *ngIf="duplicateError"> Insertion sur une cle primaire qui existe deja</div>
-</div>
 
-<div id="room" style="text-align: left">
-<h1> Rooms</h1>
-  <ul style="list-style: none;">
-    roomNo : <li><input type="text" #roomNo ></li>
-    hotelNo : <li><input type="text" #hotelNo (keyup)="validateHotelNo(hotelNo.value)"></li>
-    typeRoom : <li><input type="text" #typeRoom ></li>
-    price : <li><input type="number" #price ></li>
-    <button (click)="insertRoom(roomNo.value, hotelNo.value, typeRoom.value, price.value)" [disabled]= "hotelNo.value === '' || invalidHotelPK"> Add Room</button>
-  </ul>
-  <div id="error" *ngIf="invalidHotelPK"> Cet hotel n'existe pas</div>
-</div>

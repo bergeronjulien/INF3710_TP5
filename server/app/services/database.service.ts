@@ -15,16 +15,18 @@ export class DatabaseService {
         password: "1234",
         port: 5432,
         host: "127.0.0.1",
+        keepAlive : true
     };
 
     private pool: pg.Pool = new pg.Pool(this.connectionConfig);
 
     /*
+
         METHODES DE DEBUG
     */
     public createSchema(): Promise<pg.QueryResult> {
         this.pool.connect();
-
+        
         return this.pool.query(schema);
     }
 

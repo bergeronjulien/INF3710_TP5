@@ -19,9 +19,9 @@ INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity) VALUES ('
 INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity)VALUES ('G115', '122', 'Katrine S.',  'F', 'Kingston');
 INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity)VALUES ('G116', '111', 'Simon D', 'M',  'Kingston');
 
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G111', DATE'2019-03-01', DATE'2019-04-04', '1');
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G114', DATE'2019-03-01', DATE'2019-03-05', '3');
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G116', DATE'2019-03-03', DATE'2019-03-06', '4');
+INSERT INTO HOTELDB.Booking VALUES ('H111', 'G111', DATE'2019-04-01', DATE'2019-04-04', '1');
+INSERT INTO HOTELDB.Booking VALUES ('H111', 'G114', DATE'2019-04-01', DATE'2019-04-05', '3');
+INSERT INTO HOTELDB.Booking VALUES ('H111', 'G116', DATE'2019-04-03', DATE'2019-04-06', '4');
 INSERT INTO HOTELDB.Booking (hotelNo, guestNo, dateFrom, roomNo) VALUES ('H112', 'G115', DATE'2019-05-03',  '1');
 
 UPDATE HOTELDB.Guest set guestName = 'Alexandra L.' where guestNo='G112';
