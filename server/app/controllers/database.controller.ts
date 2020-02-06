@@ -18,7 +18,6 @@ export class DatabaseController {
         router.post("/createSchema",
                     (req: Request, res: Response, next: NextFunction) => {
                     this.databaseService.createSchema().then((result: pg.QueryResult) => {
-                        console.log("CECI EST UNE FONCTION DE TEST SEULEMENT");
                         res.json(result);
                     }).catch((e: Error) => {
                         console.error(e.stack);
@@ -28,7 +27,6 @@ export class DatabaseController {
         router.post("/populateDb",
                     (req: Request, res: Response, next: NextFunction) => {
                     this.databaseService.populateDb().then((result: pg.QueryResult) => {
-                        console.log("CECI EST UNE FONCTION DE TEST SEULEMENT");
                         res.json(result);
                     }).catch((e: Error) => {
                         console.error(e.stack);
@@ -77,7 +75,6 @@ export class DatabaseController {
         router.get("/rooms",
                    (req: Request, res: Response, next: NextFunction) => {
 
-                    // this.databaseService.getRoomFromHotel(req.query.hotelNo, req.query.roomType, req.query.price)
                     this.databaseService.getRoomFromHotelParams(req.query)
                     .then((result: pg.QueryResult) => {
                         const rooms: Room[] = result.rows.map((room: Room) => (
